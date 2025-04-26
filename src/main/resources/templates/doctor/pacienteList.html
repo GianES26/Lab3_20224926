@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Pacientes</title>
+</head>
+<body>
+
+
+<!-- Incluye el menú -->
+<div th:replace="fragments/navbar :: menu"></div>
+
+<h1>Lista de Pacientes</h1>
+<h2> Muestro tambien el hospital y doctor al que pertenecen para que sea mas evidente la relacion</h2>
+
+<h2> Se escogio como fecha del "Presente" como el inicio de 2023 para que aparezcan datos, si consideraba el tiempo local no aparecería nada</h2>
+
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Genero</th>
+    <th>Diagnostico</th>
+    <th>Fecha Cita</th>
+    <th>Numero de Habitacion</th>
+    <th>Doctor</th>
+    <th>Hospital</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="p : ${listaPacientesNoAtendidos}">
+    <td th:text="${p.id}"></td>
+    <td th:text="${p.nombre}"></td>
+    <td th:text="${p.edad}"></td>
+    <td th:text="${p.genero}"></td>
+    <td th:text="${p.diagnostico}"></td>
+    <td th:text="${p.fechaCita}"></td>
+    <td th:text="${p.numeroHabitacion}"></td>
+    <td th:text="${p.doctor.nombre}"></td>
+    <td th:text="${p.hospital.nombre}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
