@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Pacientes</title>
+</head>
+<body>
+
+<!-- Incluye el menú -->
+<div th:replace="fragments/navbar :: menu"></div>
+
+<h1>Lista de Pacientes</h1>
+<h2>Muestro también el hospital al que pertenecen para que sea más evidente la relación</h2>
+
+<br>
+<a th:href="@{/pacientes/derivarTodos}">
+  <button>Derivar Todos los Pacientes entre Doctores</button>
+</a>
+<br>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Género</th>
+    <th>Diagnóstico</th>
+    <th>Fecha Cita</th>
+    <th>Número de Habitación</th>
+    <th>Doctor</th>
+    <th>Hospital</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="p : ${listaPacientes}">
+    <td th:text="${p.id}"></td>
+    <td th:text="${p.nombre}"></td>
+    <td th:text="${p.edad}"></td>
+    <td th:text="${p.genero}"></td>
+    <td th:text="${p.diagnostico}"></td>
+    <td th:text="${p.fechaCita}"></td>
+    <td th:text="${p.numeroHabitacion}"></td>
+    <td th:text="${p.doctor.nombre}"></td>
+    <td th:text="${p.hospital.nombre}"></td>
+    <td>
+      <a th:href="@{/pacientes/derivar(id=${p.id})}">Derivar</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
